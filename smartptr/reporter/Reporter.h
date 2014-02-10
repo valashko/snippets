@@ -36,6 +36,8 @@ public:
     std::cout << "id" << id() << " copied from id" << other.id() << std::endl;
   }
   
+  const unsigned id() const { return id_; }
+  
   static void report(bool detailed = true)
   {
     std::string livingList;
@@ -56,7 +58,6 @@ public:
   }
 
 private:
-  const unsigned id() const { return id_; }
   const unsigned id_;
   static unsigned nextId_;
   static const unsigned nextId() { return ++nextId_; }
@@ -75,4 +76,10 @@ private:
 
 unsigned Reporter::nextId_ = 0;
 std::vector< unsigned > Reporter::allocatedObjects_;
+
+
+std::ostream & operator<<(std::ostream & os, const Reporter & reporter) {
+  os << "id" << reporter.id();
+  return os;
+}
 
