@@ -1,3 +1,8 @@
+/*
+    Reporter is a simple class to track object lifetime and
+    allocation/deallocation statistics. (c) Volodymyr Lashko 2014
+*/
+
 #pragma once
 
 #include <iostream>
@@ -38,7 +43,9 @@ public:
       std::ostringstream oss;
       if (! allocatedObjects_.empty())
       {
-        std::copy(allocatedObjects_.begin(), allocatedObjects_.end(), std::ostream_iterator< unsigned >(oss, " "));
+        std::copy(allocatedObjects_.begin(),
+                  allocatedObjects_.end(),
+                  std::ostream_iterator< unsigned >(oss, " "));
       }
       livingList = "[ " + oss.str() + "]";
     }
@@ -59,7 +66,9 @@ private:
     allocatedObjects_.push_back(id);
   }
   static void removeRecord(const unsigned id) {
-    allocatedObjects_.erase( std::remove( allocatedObjects_.begin(), allocatedObjects_.end(), id ), allocatedObjects_.end() );
+    allocatedObjects_.erase( std::remove( allocatedObjects_.begin(),
+                                          allocatedObjects_.end(), id ),
+                             allocatedObjects_.end() );
   }
 };
 
