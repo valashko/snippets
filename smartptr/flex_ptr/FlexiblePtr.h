@@ -28,10 +28,10 @@ public:
     assert(other.isNull());
   }
 
-  FlexiblePtr & operator=(FlexiblePtr other)
+  FlexiblePtr & operator=(FlexiblePtr & other)
   {
-    reset(other.release());
-    assert(other.isNull());
+    reset(other);
+    assert(other.isNull() || this == &other);
     return *this;
   }
 
