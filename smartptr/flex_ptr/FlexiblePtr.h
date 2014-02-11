@@ -13,7 +13,7 @@ template< typename T >
 class FlexiblePtr
 {
 public:
-  FlexiblePtr(const T * const src = NULL)
+  FlexiblePtr(T * const src = NULL)
       : ptr_(src)
   { }
 
@@ -23,24 +23,24 @@ public:
   }
 
   FlexiblePtr(const FlexiblePtr & other)
-      : ptr_(other.pointee_)
+      : ptr_(const_cast< FlexiblePtr & >(other).release())
   {
-    const_cast< FlexiblePtr >(other).reset();
     assert(other.isNull());
   }
 
-  FlexiblePtr & operator=(const FlexiblePtr & other)
+  FlexiblePtr & operator=(FlexiblePtr other)
   {
-    return reset(const_cast< FlexiblePtr >(other).release());
+    reset(other.release());
     assert(other.isNull());
+    return *this;
   }
 
   // Replaces the managed object
-  void reset(const FlexiblePtr & other = FlexiblePtr())
+  void reset(FlexiblePtr other = FlexiblePtr())
   {
     delete ptr_;
-    ptr_ = other.ptr_;
-    other.reset();
+    ptr_ = other.release();
+    assert(other.isNull());
   }
 
   // Releases the ownership of the managed object
