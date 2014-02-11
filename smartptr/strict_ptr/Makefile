@@ -1,2 +1,2 @@
 all:
-	g++ StrictPtrTest.cpp -g3 -O0 -o StrictPtrTest
+	g++ StrictPtrTest.cpp -g3 -O0 -o StrictPtrTest -I. -I../reporter

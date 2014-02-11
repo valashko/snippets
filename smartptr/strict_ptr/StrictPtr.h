@@ -12,7 +12,7 @@ template< typename T >
 class StrictPtr
 {
 public:
-  explicit StrictPtr(const T * const src = NULL)
+  explicit StrictPtr(T * const src = NULL)
       : ptr_(src)
   { }
 
@@ -27,8 +27,8 @@ public:
   const bool isNull() const { return ptr_ == NULL; }
 
 private:
-  StrictPtr(const FlexiblePtr & other);
-  StrictPtr & operator=(const FlexiblePtr & other);
+  StrictPtr(const StrictPtr & other);
+  StrictPtr & operator=(const StrictPtr & other);
 
   T * const ptr_;
 };
