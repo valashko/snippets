@@ -79,7 +79,7 @@ std::vector< unsigned > Reporter::allocatedObjects_;
 
 
 std::ostream & operator<<(std::ostream & os, const Reporter & reporter) {
-  os << "id" << reporter.id();
+  os << "Reporter, id" << reporter.id();
   return os;
 }
 
