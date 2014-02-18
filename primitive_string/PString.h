@@ -8,9 +8,15 @@
 */
 
 #include <cstring>
+#include <iostream>
 
 
 #define NON_POSITION -1
+#define ALPHABETICAL_LESS -1
+#define ALPHABETICAL_EQUAL 0
+#define ALPHABETICAL_MORE 1
+// use COMPARE macro to avoid code duplication
+#define COMPARE(LHS, RHS, RES) RES = std::strcmp((LHS).data(), (RHS).data())
 
 class PString
 {
@@ -91,5 +97,54 @@ public:
     }
     return result;
   }
+
+  bool operator==(const PString & rhs) const
+  {
+    int result;
+    COMPARE(*this, rhs, result);
+    return result == ALPHABETICAL_EQUAL;
+  }
+  
+  bool operator!=(const PString & rhs) const
+  {
+    int result;
+    COMPARE(*this, rhs, result);
+    return result != ALPHABETICAL_EQUAL;
+  }
+  
+  bool operator<(const PString & rhs) const
+  {
+    int result;
+    COMPARE(*this, rhs, result);
+    return result == ALPHABETICAL_LESS;
+  }
+  
+  bool operator>(const PString & rhs) const
+  {
+    int result;
+    COMPARE(*this, rhs, result);
+    return result == ALPHABETICAL_MORE;
+  }
+  
+  const char & operator[](const int index) const
+  {
+    // we copy the character before returning so that the user
+    // could not take it's address and access our internal char * array
+    // like so:
+    // const PString str("hello");
+    // char * intruder = const_cast< char * >(&str[0]);
+    // intruder[0] = 'B'; intruder[1] = 'A'; intruder[2] = 'D';
+    // cout << str; // "BADlo" - Muhahaha!
+    const char chr = data()[index];
+    return chr;
+  }
 };
+
+
+
+std::ostream & operator<<(std::ostream & os, const PString & str)
+{
+  os << str.data();
+  return os;
+}
 

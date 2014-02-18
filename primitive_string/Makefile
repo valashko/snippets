@@ -1,2 +1,2 @@
 all:
-	g++ -g3 -O0 PStringTest.cpp -o PStringTest -I.
+	g++ -g3 -O0 -w PStringTest.cpp -o PStringTest -I.
