@@ -1,6 +1,6 @@
 Provide a review for implementations of FlexiblePtr and StrictPtr classes according to the following creteria (feel free to add your own). Assume that these classes are candidates for becoming part of a standard library 30 years ago. This implies being short and concise while still being useful.
 1. Correctness
-   - does the code serve it's purpose?
+   - does the code serve its purpose?
    - is memory (de-)allocation handled in a correct way?
    - is there a chance of prodcuing a "dangling" pointer?
    - does the code crash?
