@@ -1,3 +1,23 @@
+Provide a review for implementations of FlexiblePtr and StrictPtr classes according to the following creteria (feel free to add your own). Assume that these classes are candidates for becoming part of a standard library 30 years ago. This implies being short and concise while still being useful.
+1. Correctness
+   - does the code serve it's purpose?
+   - is memory (de-)allocation handled in a correct way?
+   - is there a chance of prodcuing a "dangling" pointer?
+   - does the code crash?
+   - are there any unwanted side-effects produced by the code?
+2. Completeness
+   - are all essential methods and utility functions implemeted?
+   - are there any redundant methods?
+3. Effectiveness
+   - do all operations use available memory and CPU quota gracefully, i.e. are there instructions that waste processing power?
+4. Maintainability
+   - is the code clear and structured properly?
+   - is naming unambiguous?
+   - is error handling sufficient and impelemnted properly: assertions, exceptions etc.?
+   - are there any extra precautions that may be removed?
+
+==========
+
 При рецензуванні класів FlexiblePtr та StrictPtr необхідно звернути увагу на такі моменти:
 
 1. Коректність (чи все працює правильно,
